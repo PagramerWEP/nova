@@ -1288,6 +1288,11 @@ def serve_static(request: HttpRequest, path: str) -> HttpResponse:
     if safe_path.is_absolute() or ".." in safe_path.parts:
         raise Http404("Invalid path")
 
+    # Block certain file types from being served
+    blocked_extensions = {'.md', '.txt', '.env', '.git', '.gitignore'}
+    if safe_path.suffix.lower() in blocked_extensions:
+        raise Http404("File not found")
+
     # Try several common locations so existing frontend paths keep working
     candidate_paths = [
         root / safe_path,  # e.g. /static/... or direct paths
