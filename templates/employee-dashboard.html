@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الموظف - جامعة العين</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body theme-blue-light">
+    <!-- Language Selector Dropdown -->
+    <div class="language-selector-dropdown">
+        <button class="language-toggle-btn" onclick="toggleLanguageMenu()" title="تغيير اللغة">
+            <i class="fas fa-globe"></i>
+            <span class="language-label" data-ar="اللغة" data-en="Language" data-fr="Langue" data-ku="زمان">اللغة</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+            <div class="language-menu-header" data-ar="اختر اللغة المفضلة" data-en="Choose Your Language" data-fr="Choisissez votre langue" data-ku="زمانی دڵخواز هەڵبژێرە">اختر اللغة المفضلة</div>
+            <div class="language-options">
+                <button class="language-option" onclick="changeLanguage('ar')" data-lang="ar">
+                    <span class="language-flag">🇸🇦</span>
+                    <span class="language-name" data-ar="العربية" data-en="Arabic" data-fr="Arabe">العربية</span>
+                </button>
+                <button class="language-option" onclick="changeLanguage('en')" data-lang="en">
+                    <span class="language-flag">🇺🇸</span>
+                    <span class="language-name" data-ar="الإنجليزية" data-en="English" data-fr="Anglais">الإنجليزية</span>
+                </button>
+                <button class="language-option" onclick="changeLanguage('fr')" data-lang="fr">
+                    <span class="language-flag">🇫🇷</span>
+                    <span class="language-name" data-ar="الفرنسية" data-en="French" data-fr="Français">الفرنسية</span>
+                </button>
+                <button class="language-option" onclick="changeLanguage('ku')" data-lang="ku">
+                    <span class="language-flag">🟨</span>
+                    <span class="language-name" data-ar="الكردية" data-en="Kurdish" data-fr="Kurde" data-ku="کوردی">الكردية</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Selector Dropdown -->
+    <div class="theme-selector-dropdown">
+        <button class="theme-toggle-btn" onclick="toggleThemeMenu()" title="تغيير الثيم">
+            <i class="fas fa-palette"></i>
+            <span class="theme-label" data-ar="الثيمات" data-en="Themes" data-fr="Thèmes" data-ku="تەیماکان">الثيمات</span>
+        </button>
+        <div class="theme-menu" id="themeMenu">
+            <div class="theme-menu-header" data-ar="اختر الثيم المفضل" data-en="Choose Your Theme" data-fr="Choisissez votre thème" data-ku="تێمای دڵخواز هەڵبژێرە">اختر الثيم المفضل</div>
+            <div class="theme-options">
+                <button class="theme-option" onclick="changeTheme('blue-light')" data-theme="blue-light">
+                    <span class="theme-color" style="background-color: #ffffff; border: 2px solid #ddd;"></span>
+                    <span class="theme-name" data-ar="أبيض" data-en="White" data-fr="Blanc" data-ku="سپی">أبيض</span>
+                </button>
+                <button class="theme-option" onclick="changeTheme('sky-blue')" data-theme="sky-blue">
+                    <span class="theme-color" style="background-color: #0ea5e9;"></span>
+                    <span class="theme-name" data-ar="أزرق سماوي" data-en="Sky Blue" data-fr="Bleu ciel" data-ku="شینی ئاسمانی">أزرق سماوي</span>
+                </button>
+                <button class="theme-option" onclick="changeTheme('purple')" data-theme="purple">
+                    <span class="theme-color" style="background-color: #6d28d9;"></span>
+                    <span class="theme-name" data-ar="بنفسجي" data-en="Purple" data-fr="Violet" data-ku="مۆر">بنفسجي</span>
+                </button>
+                <button class="theme-option" onclick="changeTheme('blue')" data-theme="blue">
+                    <span class="theme-color" style="background-color: #3b82f6;"></span>
+                    <span class="theme-name" data-ar="أزرق غامق" data-en="Dark Blue" data-fr="Bleu foncé" data-ku="شینی تیرە">أزرق غامق</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <i class="fas fa-university"></i>
+                <h1 data-ar="جامعة العين - لوحة تحكم الموظف" data-en="Al Ain University - Employee Dashboard" data-fr="Université Al Ain - Tableau de bord employé" data-ku="زانکۆی عەڵێن - ڕووکاری کارمەند">جامعة العين - لوحة تحكم الموظف</h1>
+            </div>
+            <div class="user-section">
+                <span class="welcome-text"><span data-ar="مرحباً،" data-en="Welcome," data-fr="Bienvenue," data-ku="بەخێربێیت،">مرحباً،</span> <strong id="employeeName"></strong></span>
+                <button class="submit-btn" id="createEmployeeBtn" style="display:none" onclick="openCreateEmployeeModal()" title="إنشاء موظف جديد" data-title-ar="إنشاء موظف جديد" data-title-ku="دروستکردنی کارمەندی نوێ">
+                    <i class="fas fa-user-plus"></i>
+                    <span data-ar="إنشاء موظف" data-en="Create Employee" data-fr="Créer Employé" data-ku="دروستکردنی کارمەند">إنشاء موظف</span>
+                </button>
+                <button class="ghost-btn" id="manageEmployeesBtn" style="display:none" onclick="openEmployeesModal()" title="إدارة الموظفين">
+                    <i class="fas fa-users-cog"></i>
+                    <span data-ar="إدارة الموظفين" data-en="Manage Staff">إدارة الموظفين</span>
+                </button>
+                <button class="message-btn" id="supervisorInboxBtn" style="display:none" onclick="openSupervisorChat()" title="مدير الموظفين">
+                    <i class="fas fa-comments"></i>
+                    <span data-ar="مدير الموظفين" data-en="Supervisor Chat">مدير الموظفين</span>
+                </button>
+                <button class="edit-profile-btn" onclick="openEditProfileModal()">
+                    <i class="fas fa-user-edit"></i> <span data-ar="تعديل الملف الشخصي" data-en="Edit Profile" data-fr="Modifier le profil" data-ku="دەستکاری پروفایل">تعديل الملف الشخصي</span>
+                </button>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span data-ar="تسجيل الخروج" data-en="Logout" data-fr="Déconnexion" data-ku="دەرچوون">تسجيل الخروج</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon pending">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="pendingCount">0</h3>
+                    <p data-ar="طلبات قيد الانتظار" data-en="Pending Requests" data-fr="Demandes en attente" data-ku="داواکانی لە چاوەڕوانی">طلبات قيد الانتظار</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon approved">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="approvedCount">0</h3>
+                    <p data-ar="طلبات مقبولة" data-en="Approved Requests" data-fr="Demandes approuvées" data-ku="داواکانی قبوڵکراو">طلبات مقبولة</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon rejected">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="rejectedCount">0</h3>
+                    <p data-ar="طلبات مرفوضة" data-en="Rejected Requests" data-fr="Demandes rejetées" data-ku="داواکانی ڕەتکراو">طلبات مرفوضة</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon total">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalCount">0</h3>
+                    <p data-ar="إجمالي الطلبات" data-en="Total Requests" data-fr="Nombre total de demandes" data-ku="کۆی داواکانی گشتی">إجمالي الطلبات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <h2 class="section-title">
+                <i class="fas fa-filter"></i>
+                <span data-ar="تصفية الطلبات" data-en="Filter Requests" data-fr="Filtrer les demandes" data-ku="فلتەرکردنی داواکانی">تصفية الطلبات</span>
+            </h2>
+            <div class="filter-controls">
+                <select id="activityFilter" onchange="filterApplications()">
+                    <option value="" data-ar="جميع الأنشطة" data-en="All Activities" data-fr="Toutes les activités" data-ku="هەموو چالاکییەکان">جميع الأنشطة</option>
+                    <option value="الأنشطة الطلابية">الأنشطة الطلابية</option>
+                    <option value="القسم الرياضي">القسم الرياضي</option>
+                    <option value="قسم المشاريع الهندسية">قسم المشاريع الهندسية</option>
+                    <option value="المشاريع والابتكارات الطبية">المشاريع والابتكارات الطبية</option>
+                    <option value="الأنشطة الثقافية الطبية">الأنشطة الثقافية الطبية</option>
+                    <option value="الأنشطة الفنية">الأنشطة الفنية</option>
+                    <option value="الأنشطة الثقافية">الأنشطة الثقافية</option>
+                    <option value="الأنشطة التطوعية">الأنشطة التطوعية</option>
+                </select>
+
+                <select id="statusFilter" onchange="filterApplications()">
+                    <option value="" data-ar="جميع الحالات" data-en="All Statuses" data-fr="Tous les statuts" data-ku="هەموو بارودۆخان">جميع الحالات</option>
+                    <option value="قيد الانتظار">قيد الانتظار</option>
+                    <option value="مقبول">مقبول</option>
+                    <option value="مرفوض">مرفوض</option>
+                </select>
+
+                <input type="text" id="searchInput" placeholder="البحث باسم الطالب..." data-placeholder-ar="البحث باسم الطالب..." data-placeholder-en="Search by student name..." data-placeholder-fr="Rechercher par nom d'étudiant..." data-placeholder-ku="گەڕان بە ناوی خوێندکار..." onkeyup="filterApplications()">
+            </div>
+        </div>
+
+        <!-- Applications List -->
+        <div class="applications-management-section">
+            <h2 class="section-title">
+                <i class="fas fa-tasks"></i>
+                <span data-ar="إدارة طلبات الطلاب" data-en="Manage Student Requests" data-fr="Gérer les demandes des étudiants" data-ku="بەڕێوەبردنی داواکانی خوێندکاران">إدارة طلبات الطلاب</span>
+            </h2>
+            <div id="applicationsList" class="applications-table"></div>
+        </div>
+
+        <div class="applications-management-section">
+            <h2 class="section-title">
+                <i class="fas fa-bullhorn"></i>
+                <span data-ar="إدارة الإعلانات" data-en="Manage Announcements" data-fr="Gérer les annonces" data-ku="بەڕێوەبردنی ئاگانامەکان">إدارة الإعلانات</span>
+            </h2>
+            <div class="details-content">
+                <button class="submit-btn" onclick="openAnnouncementAdminModal()">
+                    <i class="fas fa-bullhorn"></i>
+                    <span data-ar="نشر الإعلان" data-en="Publish Announcement" data-fr="Publier l'annonce" data-ku="بڵاوکردنی ئاگانامە">نشر الإعلان</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Application Details Modal -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 data-ar="تفاصيل الطلب" data-en="Request Details" data-fr="Détails de la demande" data-ku="زانیارییەکانى داوا">تفاصيل الطلب</h2>
+                <button class="close-btn" onclick="closeDetailsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="applicationDetails" class="details-content"></div>
+            <div class="modal-actions">
+                <button class="message-btn" onclick="openMessageWithStudent()" title="مراسلة الطالب" data-title-ar="مراسلة الطالب" data-title-ku="پەیام ناردن بۆ خوێندکار">
+                    <i class="fas fa-comments"></i>
+                    <span data-ar="مراسلة" data-en="Message" data-fr="Message" data-ku="پەیام">مراسلة</span>
+                </button>
+                <button class="approve-btn" onclick="approveApplication()">
+                    <i class="fas fa-check"></i>
+                    <span data-ar="قبول الطلب" data-en="Approve" data-fr="Approuver" data-ku="قبوڵکردن">قبول الطلب</span>
+                </button>
+                <button class="reject-btn" onclick="rejectApplication()">
+                    <i class="fas fa-times"></i>
+                    <span data-ar="رفض الطلب" data-en="Reject" data-fr="Rejeter" data-ku="ڕەتکردنەوە">رفض الطلب</span>
+                </button>
+                <button class="danger-btn" id="deleteApplicationBtn" style="display:none" onclick="deleteApplicationAction()">
+                    <i class="fas fa-trash"></i>
+                    <span data-ar="حذف الطلب" data-en="Delete" data-fr="Supprimer" data-ku="سڕینەوە">حذف الطلب</span>
+                </button>
+                <button class="cancel-btn" onclick="closeDetailsModal()">
+                    <span data-ar="إغلاق" data-en="Close" data-fr="Fermer" data-ku="داخستن">إغلاق</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-ar="تعديل الملف الشخصي" data-ku="دەستکاری پروفایل">تعديل الملف الشخصي</h2>
+                <button class="close-btn" onclick="closeEditProfileModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form onsubmit="handleProfileUpdate(event)" id="editProfileForm">
+                <div class="input-group">
+                    <label for="editFullName" data-ar="الاسم الكامل" data-ku="ناوی تەواو">الاسم الكامل</label>
+                    <input type="text" id="editFullName" required>
+                </div>
+                <div class="input-group">
+                    <label for="editUsername" data-ar="اسم المستخدم" data-ku="ناوی بەکارهێنەر">اسم المستخدم</label>
+                    <input type="text" id="editUsername" required disabled>
+                </div>
+                <div class="input-group">
+                    <label for="editEmail" data-ar="البريد الإلكتروني" data-ku="ئیمەیڵ">البريد الإلكتروني</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="editNewPassword" data-ar="كلمة المرور الجديدة (اختياري)" data-ku="وشەی نهێنی نوێ (ئەرەزوو)">كلمة المرور الجديدة (اختياري)</label>
+                    <input type="password" id="editNewPassword" placeholder="اتركه فارغًا للحفاظ على القديمة" data-placeholder-ar="اتركه فارغًا للحفاظ على القديمة" data-placeholder-ku="بە بەتاڵی بەلەوە هێڵە بۆ پاراستنی کۆنکە">
+                </div>
+                <div class="input-group">
+                    <label for="editConfirmNewPassword" data-ar="تأكيد كلمة المرور الجديدة" data-ku="دڵنیابون لە وشەی نهێنی نوێ">تأكيد كلمة المرور الجديدة</label>
+                    <input type="password" id="editConfirmNewPassword" placeholder="تأكيد كلمة المرور الجديدة" data-placeholder-ar="تأكيد كلمة المرور الجديدة" data-placeholder-ku="دڵنیابون لە وشەی نهێنی نوێ">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-save"></i> <span data-ar="حفظ التغييرات" data-ku="هەڵگرتنی گۆڕانکارییەکان">حفظ التغييرات</span>
+                    </button>
+                    <button type="button" class="cancel-btn" onclick="closeEditProfileModal()">
+                        <span data-ar="إلغاء" data-ku="هەڵوەشاندنەوە">إلغاء</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Employee Modal -->
+    <div class="modal" id="createEmployeeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-ar="إنشاء حساب موظف" data-en="Create Employee Account" data-fr="Créer un compte employé" data-ku="دروستکردنی هەژماری کارمەند">إنشاء حساب موظف</h2>
+                <button class="close-btn" onclick="closeCreateEmployeeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form onsubmit="handleCreateEmployee(event)" id="createEmployeeForm">
+                <div class="input-group"><label data-ar="الاسم الكامل" data-ku="ناوی تەواو">الاسم الكامل</label><input type="text" id="newEmpFullName" required></div>
+                <div class="input-group"><label data-ar="اسم المستخدم" data-ku="ناوی بەکارهێنەر">اسم المستخدم</label><input type="text" id="newEmpUsername" required></div>
+                <div class="input-group"><label data-ar="البريد الإلكتروني" data-ku="ئیمەیڵ">البريد الإلكتروني</label><input type="email" id="newEmpEmail" required></div>
+                <div class="input-group"><label data-ar="كلمة المرور" data-ku="وشەی نهێنی">كلمة المرور</label><input type="password" id="newEmpPassword" required></div>
+                <div class="modal-actions">
+                    <button type="submit" class="approve-btn"><i class="fas fa-check"></i><span data-ar="إنشاء" data-ku="دروستکردن">إنشاء</span></button>
+                    <button type="button" class="cancel-btn" onclick="closeCreateEmployeeModal()"><span data-ar="إلغاء" data-ku="هەڵوەشاندنەوە">إلغاء</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supervisor Chat Modal -->
+    <div class="modal" id="supervisorChatModal">
+        <div class="messaging-content">
+            <div class="modal-header">
+                <div class="header-info">
+                    <h2 id="supervisorChatTitle">مدير الموظفين</h2>
+                    <p class="other-user" id="supervisorChatSubtitle"></p>
+                </div>
+                <button class="close-btn" onclick="closeSupervisorChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="messages-container" id="supervisorMessagesList"></div>
+            <div class="message-input-area">
+                <textarea id="supervisorMessageInput" class="message-input" rows="2" placeholder="اكتب رسالتك..."></textarea>
+                <div class="input-actions">
+                    <button class="send-btn" onclick="sendSupervisorMessage()">
+                        <i class="fas fa-paper-plane"></i> إرسال
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Employees Management Modal -->
+    <div class="modal" id="employeesManagementModal">
+        <div class="modal-content xl">
+            <div class="modal-header">
+                <h2><i class="fas fa-users-cog"></i> إدارة الموظفين</h2>
+                <button class="close-btn" onclick="closeEmployeesModal()" title="إغلاق">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="management-toolbar" style="justify-content: space-between;">
+                <div style="display:flex;gap:10px;align-items:center;">
+                    <button class="ghost-btn" onclick="loadEmployees()">
+                        <i class="fas fa-sync-alt"></i>
+                        <span data-ar="تحديث القائمة" data-en="Refresh List">تحديث القائمة</span>
+                    </button>
+                </div>
+                <small style="color: var(--text-secondary);">الموظف الرئيسي فقط يمكنه الحذف والمراسلة</small>
+            </div>
+            <div id="employeesList" class="employees-grid"></div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+
+    <script src="translations.js"></script>
+    <script src="messaging-system.js"></script>
+    <script src="script.js"></script>
+    <script src="api-client.js"></script>
+    <script src="employee-script.js"></script>
+    <script src="audio-feedback.js"></script>
+    
+    <!-- Debug Console for Mobile (Remove in production) -->
+    <script>
+        // Add Eruda for mobile debugging (only on mobile devices)
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            document.write('<script src="https://cdn.jsdelivr.net/npm/eruda"><\/script>');
+            document.write('<script>eruda.init();<\/script>');
+        }
+    </script>
+</body>
+</html>

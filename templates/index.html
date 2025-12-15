@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة العين - نظام الأنشطة الطلابية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="theme-blue-light">
+    <!-- Language Selector Dropdown -->
+    <div class="language-selector-dropdown">
+        <button class="language-toggle-btn" onclick="toggleLanguageMenu()" title="تغيير اللغة">
+            <i class="fas fa-globe"></i>
+            <span class="language-label" data-ar="اللغة" data-en="Language" data-fr="Langue" data-ku="زمان">اللغة</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+            <div class="language-menu-header" data-ar="اختر اللغة المفضلة" data-en="Choose Your Language" data-fr="Choisissez votre langue" data-ku="زمانی دڵخواز هەڵبژێرە">اختر اللغة المفضلة</div>
+            <div class="language-options">
+                <button class="language-option" onclick="changeLanguage('ar')" data-lang="ar">
+                    <span class="language-flag">🇸🇦</span>
+                    <span class="language-name" data-ar="العربية" data-en="Arabic" data-fr="Arabe">العربية</span>
+                </button>
+                <button class="language-option" onclick="changeLanguage('en')" data-lang="en">
+                    <span class="language-flag">🇺🇸</span>
+                    <span class="language-name" data-ar="الإنجليزية" data-en="English" data-fr="Anglais">الإنجليزية</span>
+                </button>
+                <button class="language-option" onclick="changeLanguage('fr')" data-lang="fr">
+                    <span class="language-flag">🇫🇷</span>
+                    <span class="language-name" data-ar="الفرنسية" data-en="French" data-fr="Français">الفرنسية</span>
+                </button>
+                <button class="language-option" onclick="changeLanguage('ku')" data-lang="ku">
+                    <span class="language-flag">🟨</span>
+                    <span class="language-name" data-ar="الكردية" data-en="Kurdish" data-fr="Kurde" data-ku="کوردی">الكردية</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Selector Dropdown -->
+    <div class="theme-selector-dropdown">
+        <button class="theme-toggle-btn" onclick="toggleThemeMenu()" title="تغيير الثيم">
+            <i class="fas fa-palette"></i>
+            <span class="theme-label" data-ar="الثيمات" data-en="Themes" data-fr="Thèmes" data-ku="تەیماکان">الثيمات</span>
+        </button>
+        <div class="theme-menu" id="themeMenu">
+            <div class="theme-menu-header" data-ar="اختر الثيم المفضل" data-en="Choose Your Theme" data-fr="Choisissez votre thème" data-ku="تێمای دڵخواز هەڵبژێرە">اختر الثيم المفضل</div>
+            <div class="theme-options">
+                <button class="theme-option" onclick="changeTheme('blue-light')" data-theme="blue-light">
+                    <span class="theme-color" style="background-color: #ffffff; border: 2px solid #ddd;"></span>
+                    <span class="theme-name" data-ar="أبيض" data-en="White" data-fr="Blanc" data-ku="سپی">أبيض</span>
+                </button>
+                <button class="theme-option" onclick="changeTheme('sky-blue')" data-theme="sky-blue">
+                    <span class="theme-color" style="background-color: #4a90e2;"></span>
+                    <span class="theme-name" data-ar="أزرق سماوي" data-en="Sky Blue" data-fr="Bleu ciel" data-ku="شینی ئاسمانی">أزرق سماوي</span>
+                </button>
+                <button class="theme-option" onclick="changeTheme('purple')" data-theme="purple">
+                    <span class="theme-color" style="background-color: #9b6dd4;"></span>
+                    <span class="theme-name" data-ar="بنفسجي" data-en="Purple" data-fr="Violet" data-ku="مۆر">بنفسجي</span>
+                </button>
+                <button class="theme-option" onclick="changeTheme('blue')" data-theme="blue">
+                    <span class="theme-color" style="background-color: #3b82f6;"></span>
+                    <span class="theme-name" data-ar="أزرق غامق" data-en="Dark Blue" data-fr="Bleu foncé" data-ku="شینی تیرە">أزرق غامق</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="auth-card">
+            <!-- University Logo -->
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h1 class="university-name" data-ar="جامعة العين" data-en="Al Ain University" data-fr="Université Al Ain">جامعة العين</h1>
+                <p class="university-subtitle" data-ar="العراق - نظام إدارة الأنشطة الطلابية" data-en="Iraq - Student Activities Management System" data-fr="Irak - Système de gestion des activités étudiantes">العراق - نظام إدارة الأنشطة الطلابية</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="form-container" id="loginForm">
+                <h2 class="form-title">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span data-ar="تسجيل الدخول" data-en="Login" data-fr="Connexion" data-ku="چوونەژوورەوە">تسجيل الدخول</span>
+                </h2>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="loginUsername" placeholder="اسم المستخدم" data-placeholder-ar="اسم المستخدم" data-placeholder-en="Username" data-placeholder-fr="Nom d'utilisateur" data-placeholder-ku="ناوی بەکارهێنەر" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="كلمة المرور" data-placeholder-ar="كلمة المرور" data-placeholder-en="Password" data-placeholder-fr="Mot de passe" data-placeholder-ku="وشەی نهێنی" required>
+                    </div>
+
+                    <div class="input-group role-selector">
+                        <label>
+                            <input type="radio" name="loginRole" value="student" checked>
+                            <span><i class="fas fa-user-graduate"></i> <span data-ar="طالب" data-en="Student" data-fr="Étudiant" data-ku="خوێندکار">طالب</span></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="loginRole" value="employee">
+                            <span><i class="fas fa-user-tie"></i> <span data-ar="موظف" data-en="Employee" data-fr="Employé" data-ku="کارمەند">موظف</span></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="loginRole" value="super_employee">
+                            <span><i class="fas fa-user-shield"></i> <span data-ar="موظف رئيسي" data-en="Super Employee" data-fr="Employé principal" data-ku="کارمەندی سەرەکی">موظف رئيسي</span></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span data-ar="دخول" data-en="Login" data-fr="Connexion" data-ku="چوونەژوورەوە">دخول</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </form>
+
+                <p class="switch-form">
+                    <span data-ar="ليس لديك حساب؟" data-en="Don't have an account?" data-fr="Vous n'avez pas de compte?" data-ku="هەژمارێک نییە؟">ليس لديك حساب؟</span>
+                    <a href="#" onclick="showRegisterForm()" data-ar="إنشاء حساب جديد" data-en="Create New Account" data-fr="Créer un nouveau compte" data-ku="دروستکردنی هەژماری نوێ">إنشاء حساب جديد</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form-container hidden" id="registerForm">
+                <h2 class="form-title">
+                    <i class="fas fa-user-plus"></i>
+                    <span data-ar="إنشاء حساب جديد" data-en="Create New Account" data-fr="Créer un nouveau compte" data-ku="دروستکردنی هەژماری نوێ">إنشاء حساب جديد</span>
+                </h2>
+                
+                <form onsubmit="handleRegister(event)">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="registerFullName" placeholder="الاسم الكامل" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Full Name" data-placeholder-fr="Nom complet" data-placeholder-ku="ناوی تەواو" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="registerUsername" placeholder="اسم المستخدم" data-placeholder-ar="اسم المستخدم" data-placeholder-en="Username" data-placeholder-fr="Nom d'utilisateur" data-placeholder-ku="ناوی بەکارهێنەر" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="registerEmail" placeholder="البريد الإلكتروني" data-placeholder-ar="البريد الإلكتروني" data-placeholder-en="Email" data-placeholder-fr="Email" data-placeholder-ku="ئیمەیڵ" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="registerPassword" placeholder="كلمة المرور" data-placeholder-ar="كلمة المرور" data-placeholder-en="Password" data-placeholder-fr="Mot de passe" data-placeholder-ku="وشەی نهێنی" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="registerConfirmPassword" placeholder="تأكيد كلمة المرور" data-placeholder-ar="تأكيد كلمة المرور" data-placeholder-en="Confirm Password" data-placeholder-fr="Confirmer le mot de passe" data-placeholder-ku="دڵنیابون لە وشەی نهێنی" required>
+                    </div>
+
+                    <div class="input-group role-selector">
+                        <label>
+                            <input type="radio" name="registerRole" value="student" checked>
+                            <span><i class="fas fa-user-graduate"></i> <span data-ar="طالب" data-en="Student" data-fr="Étudiant" data-ku="خوێندکار">طالب</span></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span data-ar="إنشاء الحساب" data-en="Create Account" data-fr="Créer un compte" data-ku="دروستکردنی هەژمار">إنشاء الحساب</span>
+                        <i class="fas fa-user-check"></i>
+                    </button>
+                </form>
+
+                <p class="switch-form">
+                    <span data-ar="لديك حساب بالفعل؟" data-en="Already have an account?" data-fr="Vous avez déjà un compte?" data-ku="پێشتر هەژمارەکت هەیە؟">لديك حساب بالفعل؟</span>
+                    <a href="#" onclick="showLoginForm()" data-ar="تسجيل الدخول" data-en="Login" data-fr="Connexion" data-ku="چوونەژوورەوە">تسجيل الدخول</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Developers Section -->
+    <div class="developers-section">
+        <!-- Developers Button -->
+        <button class="developers-btn" onclick="openDevelopersModal()" data-title-ar="المطورون" data-title-en="Developers" data-title-fr="Développeurs" data-title-ku="بەرنامەسازان" title="المطورون">
+            <i class="fas fa-code"></i>
+            <span data-ar="المطورون" data-en="Developers" data-fr="Développeurs" data-ku="بەرنامەسازان">المطورون</span>
+        </button>
+
+        <!-- Developers' Rights Button -->
+        <button class="developers-btn" onclick="openDevelopersRightsModal()" data-title-ar="حقوق المطورين" data-title-en="Developers' Rights" data-title-fr="Droits des développeurs" data-title-ku="مافی بەرنامەسازان" title="حقوق المطورين">
+            <i class="fas fa-shield-alt"></i>
+            <span data-ar="حقوق المطورين" data-en="Developers' Rights" data-fr="Droits des développeurs" data-ku="مافی بەرنامەسازان">حقوق المطورين</span>
+        </button>
+
+    <!-- Developers Terms Modal -->
+    <!-- تم حذف نافذة الشروط المخصصة وإرجاع الزر فقط -->
+        </button>
+    </div>
+
+    <!-- Guide and Announcement Section -->
+    <div class="guide-section">
+        <!-- Guide Button -->
+        <button class="guide-btn" onclick="startGuide()" data-title-ar="دليل الاستخدام" data-title-en="User Guide" data-title-fr="Guide d'utilisation" data-title-ku="ڕێنمایی بەکاربردن" title="دليل الاستخدام">
+            <i class="fas fa-question"></i>
+            <span data-ar="دليل" data-en="Guide" data-fr="Guide" data-ku="ڕێنمایی">دليل</span>
+        </button>
+
+        <!-- Announcement Button -->
+        <button class="guide-btn" onclick="openAnnouncementModal()" data-title-ar="إعلان" data-title-en="Announcement" data-title-fr="Annonce" data-title-ku="ئاگانامە" title="إعلان">
+            <i class="fas fa-bullhorn"></i>
+            <span data-ar="إعلان" data-en="Announcement" data-fr="Annonce" data-ku="ئاگانامە">إعلان</span>
+        </button>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="translations.js"></script>
+    <script src="guide.js"></script>
+    <script src="messaging-system.js"></script>
+    <script src="api-client.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <!-- تم حذف السكريبت الخاص بنافذة الشروط المخصصة -->
+</body>
+</html>
