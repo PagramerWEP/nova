@@ -118,6 +118,8 @@ def _ensure_default_activities() -> None:
 
 @csrf_exempt
 @require_http_methods(["POST"])
+@csrf_exempt
+@require_http_methods(["POST"])
 def register(request: HttpRequest) -> JsonResponse:
     data = _parse_json(request)
     required_fields = ["fullName", "username", "email", "password", "role"]
@@ -1238,6 +1240,8 @@ def get_message_thread(request: HttpRequest) -> JsonResponse:
 # ==================== HEALTH & FRONTEND ROUTES ====================
 
 
+@csrf_exempt
+@require_http_methods(["GET"])
 def health_check(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
         {
@@ -1352,3 +1356,60 @@ def create_employee(request: HttpRequest) -> JsonResponse:
         return _error(f"حدث خطأ: {exc}", status=500)
 
     return JsonResponse({"success": True, "message": "تم إنشاء حساب الموظف بنجاح", "userId": user.id}, status=201)
+
+
+# ==================== ANNOUNCEMENTS (Stub) ====================
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def get_active_announcement(request: HttpRequest) -> JsonResponse:
+    """Get active announcement"""
+    return JsonResponse({
+        "success": True,
+        "announcement": {
+            "id": 1,
+            "title": "إعلان مهم",
+            "content": "اختبار الإعلانات",
+            "is_active": True
+        }
+    })
+
+
+@csrf_exempt
+@jwt_required
+@require_http_methods(["POST"])
+def create_announcement(request: HttpRequest) -> JsonResponse:
+    """Create new announcement"""
+    data = _parse_json(request)
+    return JsonResponse({
+        "success": True,
+        "message": "تم إنشاء الإعلان بنجاح",
+        "announcement": data
+    }, status=201)
+
+
+@csrf_exempt
+@jwt_required
+@require_http_methods(["PUT"])
+def update_announcement(request: HttpRequest, announcement_id: int) -> JsonResponse:
+    """Update announcement"""
+    data = _parse_json(request)
+    return JsonResponse({
+        "success": True,
+        "message": "تم تحديث الإعلان بنجاح",
+        "announcement": data
+    })
+
+
+@csrf_exempt
+@jwt_required
+@require_http_methods(["PATCH"])
+def toggle_announcement(request: HttpRequest, announcement_id: int) -> JsonResponse:
+    """Toggle announcement active status"""
+    data = _parse_json(request)
+    return JsonResponse({
+        "success": True,
+        "message": "تم تحديث حالة الإعلان",
+        "active": data.get("active", False)
+    })
+
