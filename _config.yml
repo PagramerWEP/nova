@@ -1,0 +1,6 @@
+# GitHub Pages Configuration
+# Display index.html as the root page
+
+theme: null
+markdown: null
+plugins: []
