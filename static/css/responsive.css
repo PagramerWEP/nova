@@ -1,0 +1,688 @@
+/* Enhanced Responsive Design - Mobile First Approach */
+
+/* ==================== MOBILE FIRST (320px - 480px) ==================== */
+@media (max-width: 480px) {
+    * {
+        font-size: 14px;
+    }
+
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .auth-card {
+        padding: 15px;
+        max-width: 100%;
+        width: calc(100% - 30px);
+        border-radius: 12px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .form-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+        min-height: 48px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        min-height: 48px;
+        border-radius: 8px;
+    }
+
+    .modal-content {
+        width: calc(100vw - 40px);
+        max-width: calc(100vw - 40px);
+        max-height: 90vh;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .modal-header {
+        padding: 15px 0;
+        margin-bottom: 15px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+        word-break: break-word;
+    }
+
+    .modal-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .modal-actions button {
+        width: 100%;
+        padding: 12px;
+        min-height: 44px;
+        font-size: 14px;
+    }
+
+    .activities-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .activity-card {
+        padding: 15px;
+        border-radius: 10px;
+        min-height: auto;
+    }
+
+    .activity-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .activity-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .dashboard-header {
+        padding: 10px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-section h1 {
+        font-size: 20px;
+    }
+
+    .user-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .user-section button {
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .welcome-text {
+        font-size: 14px;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .filter-section {
+        padding: 10px;
+    }
+
+    .filter-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-controls select,
+    .filter-controls input {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .applications-table,
+    .employees-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .clickable-row,
+    .employee-card {
+        padding: 15px;
+        min-height: 60px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .messaging-content {
+        max-width: 100vw;
+        width: 100vw;
+        height: calc(100vh - 100px);
+        border-radius: 0;
+    }
+
+    .messages-container {
+        max-height: calc(100vh - 200px);
+    }
+
+    .message-input {
+        font-size: 16px;
+        padding: 12px;
+        min-height: 44px;
+    }
+
+    .language-menu,
+    .theme-menu {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100vw - 40px);
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 12px;
+    }
+
+    .guide-btn,
+    .developers-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .guide-btn i,
+    .developers-btn i {
+        font-size: 16px;
+    }
+
+    .notification {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        width: calc(100% - 30px);
+        padding: 12px 15px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 10px;
+        word-break: break-word;
+    }
+
+    .details-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .detail-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 10px;
+    }
+}
+
+/* ==================== TABLET (481px - 1024px) ==================== */
+@media (min-width: 481px) and (max-width: 1024px) {
+    * {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .auth-card {
+        padding: 30px;
+        max-width: 90%;
+        border-radius: 14px;
+    }
+
+    .form-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+        min-height: 50px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        padding: 13px;
+        font-size: 16px;
+        min-height: 46px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 13px 25px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+
+    .modal-content {
+        width: 85vw;
+        max-width: 85vw;
+        max-height: 85vh;
+        padding: 25px;
+        border-radius: 14px;
+    }
+
+    .modal-content.large {
+        width: 90vw;
+        max-width: 90vw;
+    }
+
+    .modal-content.xl {
+        width: 95vw;
+        max-width: 95vw;
+    }
+
+    .modal-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .modal-actions button {
+        padding: 12px;
+        font-size: 15px;
+        min-height: 44px;
+    }
+
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .activity-card {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .dashboard-header {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .user-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .user-section button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .filter-section {
+        padding: 15px;
+    }
+
+    .filter-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+    }
+
+    .filter-controls select,
+    .filter-controls input {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .applications-table {
+        overflow-x: auto;
+    }
+
+    .employees-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .messaging-content {
+        max-width: 90vw;
+        height: 80vh;
+        border-radius: 12px;
+    }
+
+    .message-input {
+        font-size: 15px;
+        padding: 12px;
+        min-height: 44px;
+    }
+
+    .guide-btn,
+    .developers-btn {
+        padding: 11px 15px;
+        font-size: 14px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .notification {
+        bottom: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ==================== LAPTOP/DESKTOP (1025px+) ==================== */
+@media (min-width: 1025px) {
+    * {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .auth-card {
+        padding: 40px;
+        max-width: 600px;
+        border-radius: 16px;
+    }
+
+    .form-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+        min-height: 52px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        padding: 14px 16px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px 30px;
+        font-size: 16px;
+        min-height: 50px;
+        border-radius: 10px;
+    }
+
+    .modal-content {
+        width: 80vw;
+        max-width: 900px;
+        max-height: 90vh;
+        padding: 30px;
+        border-radius: 16px;
+    }
+
+    .modal-content.large {
+        width: 85vw;
+        max-width: 1000px;
+    }
+
+    .modal-content.xl {
+        width: 90vw;
+        max-width: 1200px;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 25px;
+    }
+
+    .modal-actions button {
+        padding: 12px 25px;
+        font-size: 16px;
+        min-height: 48px;
+        min-width: 100px;
+    }
+
+    .activities-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .activity-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .dashboard-header {
+        padding: 20px 30px;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user-section {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .user-section button {
+        padding: 10px 20px;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .stats-section {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .filter-section {
+        padding: 20px;
+    }
+
+    .filter-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .filter-controls select,
+    .filter-controls input {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+
+    .applications-table,
+    .employees-grid {
+        overflow-x: auto;
+    }
+
+    .employees-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .messaging-content {
+        width: 100%;
+        max-width: 1000px;
+        height: 85vh;
+        border-radius: 14px;
+    }
+
+    .message-input {
+        font-size: 16px;
+        padding: 14px;
+        min-height: 50px;
+    }
+
+    .language-menu {
+        width: 350px !important;
+    }
+
+    .theme-menu {
+        width: 400px !important;
+    }
+
+    .guide-btn,
+    .developers-btn {
+        padding: 12px 18px;
+        font-size: 15px;
+        bottom: 25px;
+        right: 25px;
+    }
+
+    .notification {
+        bottom: 25px;
+        right: 25px;
+        padding: 16px 22px;
+        font-size: 15px;
+    }
+
+    .details-content {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+
+/* ==================== TOUCH DEVICE OPTIMIZATIONS ==================== */
+@media (hover: none) and (pointer: coarse) {
+    button, .clickable-row, .clickable-request, input, select, textarea {
+        min-height: 48px;
+        min-width: 48px;
+    }
+
+    button, a {
+        touch-action: manipulation;
+    }
+
+    .modal-actions button {
+        min-height: 50px;
+        padding: 14px 20px;
+    }
+}
+
+/* ==================== LANDSCAPE ORIENTATION ==================== */
+@media (max-height: 600px) and (orientation: landscape) {
+    .auth-card {
+        padding: 15px 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .form-title {
+        margin-bottom: 15px;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+    .guide-btn,
+    .developers-btn {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+
+/* ==================== HIGH DPI DISPLAYS ==================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    button, input, select, textarea {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* ==================== PRINT MEDIA ==================== */
+@media print {
+    .dashboard-header,
+    .filter-section,
+    .guide-btn,
+    .developers-btn,
+    .language-selector-dropdown,
+    .theme-selector-dropdown {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .modal-content, .auth-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}

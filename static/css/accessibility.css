@@ -1,0 +1,353 @@
+/* Performance and Accessibility Enhancements */
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    :root {
+        --primary-color: #000;
+        --text-primary: #fff;
+        --border-color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    body:not(.theme-white) {
+        background: #0a0e27;
+        color: #e4eeff;
+    }
+}
+
+/* Light mode preference */
+@media (prefers-color-scheme: light) {
+    body.theme-white {
+        background: #f7fafc;
+        color: #0f172a;
+    }
+}
+
+/* ==================== PERFORMANCE ==================== */
+
+/* Optimize repaints */
+body {
+    will-change: auto;
+}
+
+button, a, input {
+    will-change: auto;
+}
+
+button:hover, a:hover {
+    will-change: transform;
+}
+
+/* Use system fonts for better performance */
+@font-face {
+    font-family: 'System';
+    src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==================== FOCUS AND KEYBOARD NAVIGATION ==================== */
+
+:focus-visible {
+    outline: 2px solid #5ea8ff;
+    outline-offset: 2px;
+}
+
+/* Remove default outline but ensure focus is visible */
+:focus {
+    outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #5ea8ff;
+    outline-offset: 2px;
+}
+
+/* ==================== FORM OPTIMIZATION ==================== */
+
+input, select, textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="submit"],
+input[type="button"],
+button {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ==================== SCROLLING AND OVERFLOW ==================== */
+
+/* Smooth scrolling for modern browsers */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optimize scrolling performance */
+.modal-content,
+.messages-container,
+.details-content,
+.applications-table,
+.employees-grid {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ==================== TEXT AND TYPOGRAPHY ==================== */
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve word breaking */
+h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+p, span, label {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ==================== IMAGE OPTIMIZATION ==================== */
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==================== INTERACTIVE ELEMENTS ==================== */
+
+button, a, input, select, textarea {
+    transition: all 0.2s ease;
+}
+
+/* Reduce transition time for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    button, a, input, select, textarea {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* ==================== LOADING STATES ==================== */
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ==================== DARK MODE COLORS ==================== */
+
+@media (prefers-color-scheme: dark) {
+    input, select, textarea {
+        background-color: #1a2a4a;
+        color: #e4eeff;
+        border-color: #3a5a8a;
+    }
+
+    input::placeholder {
+        color: #a0b0d0;
+    }
+
+    .auth-card {
+        background-color: #0b1b38;
+        border-color: #2a4a7a;
+    }
+
+    .modal-content {
+        background-color: #0b1b38;
+        border-color: #2a4a7a;
+    }
+}
+
+/* ==================== LIGHT MODE COLORS ==================== */
+
+@media (prefers-color-scheme: light) {
+    input, select, textarea {
+        background-color: #ffffff;
+        color: #0f172a;
+        border-color: #e2e8f0;
+    }
+
+    input::placeholder {
+        color: #9ca3af;
+    }
+
+    .auth-card {
+        background-color: #ffffff;
+        border-color: #e2e8f0;
+    }
+
+    .modal-content {
+        background-color: #ffffff;
+        border-color: #e2e8f0;
+    }
+}
+
+/* ==================== PRINT OPTIMIZATIONS ==================== */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    /* Hide unnecessary elements for printing */
+    button, input[type="button"], input[type="submit"], 
+    .navigation, .modal, .notification {
+        display: none !important;
+    }
+}
+
+/* ==================== SCREEN READER OPTIMIZATIONS ==================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ==================== RTLANGUAGE SUPPORT ==================== */
+
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+    text-align: right;
+}
+
+[dir="ltr"] {
+    direction: ltr;
+    text-align: left;
+}
+
+/* ==================== ANIMATION OPTIMIZATIONS ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==================== VIEWPORT OPTIMIZATIONS ==================== */
+
+/* For notched devices (iPhone X, etc.) */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+        padding-top: max(0px, env(safe-area-inset-top));
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+
+    .modal-content {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+    }
+}
+
+/* ==================== ZOOM PREVENTION ==================== */
+
+input, select, textarea {
+    font-size: 16px; /* Prevents automatic zoom on iOS */
+}
+
+/* ==================== COLOR CONTRAST ==================== */
+
+::-moz-selection {
+    background-color: #5ea8ff;
+    color: #ffffff;
+}
+
+::selection {
+    background-color: #5ea8ff;
+    color: #ffffff;
+}
+
+/* ==================== LINK STYLING ==================== */
+
+a {
+    color: #5ea8ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: 2px solid #5ea8ff;
+    border-radius: 2px;
+}
+
+/* ==================== BUTTON STATES ==================== */
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==================== TRANSFORM OPTIMIZATIONS ==================== */
+
+button:active,
+a:active {
+    transform: translateY(1px);
+}
+
+button:focus-visible:active {
+    transform: translateY(1px);
+}
